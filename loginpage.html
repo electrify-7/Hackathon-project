@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="loginpage.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+           <div class="user-icon">
+            <img src="Screenshot 2024-04-14 at 4.20.28 AM.png" alt="User Icon">
+           </div>
+             
+           <div class="name">Profile@123 </div>
+           <div class="title"> <h1>Title</h1> </div>
+          </div>
+    </header>
+
+    <!-- Main Section -->
+    <main id="thread-container">
+        <!-- Example Cards (You can add more as needed) -->
+        <div class="card">
+            <div class="user-logo">
+        
+            </div>
+            <h2>User Name</h2>
+            <p>Content of the tweet. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="details-box">
+                <p>Date: April 15, 2024</p>
+                <p>User: John Doe</p>
+                <p>Thread content goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="user-logo">
+                <img src="Screenshot 2024-04-14 at 4.20.28 AM.png" alt="User Logo">
+            </div>
+            <h2>User Name</h2>
+            <p>Content of the tweet. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="details-box">
+                <p>Date: April 15, 2024</p>
+                <p>User: Jane Doe</p>
+                <p>Thread content goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Form for User to Add Threads -->
+    <form id="add-thread-form">
+        <textarea id="thread-content" placeholder="Write your thread here..." rows="4" required></textarea>
+        <button type="submit">Add Thread</button>
+    </form>
+
+    <!-- Footer Section -->
+    <footer>
+       
+    </footer>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('add-thread-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Get the thread content from the textarea
+        var threadContent = document.getElementById('thread-content').value;
+
+        // Get current date and time
+        var currentDate = new Date();
+        var dateString = currentDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        var timeString = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+
+        // Create a new card element
+        var newCard = document.createElement('div');
+        newCard.className = 'card';
+        newCard.innerHTML = '<div class="user-logo"><img src="Screenshot 2024-04-14 at 4.20.28 AM.png" alt="User Logo"></div><h2>User Name</h2><p>' + threadContent + '</p><div class="details-box"><p>Date: ' + dateString + ' ' + timeString + '</p><p>User: John Doe</p><p>' + threadContent + '</p></div>';
+
+        // Insert the new card at the beginning of the thread container
+        var threadContainer = document.getElementById('thread-container');
+        threadContainer.insertBefore(newCard, threadContainer.firstChild);
+
+        // Reset the textarea value
+        document.getElementById('thread-content').value = '';
+
+        // Adjust opacity of cards based on scroll position
+        updateOpacity();
+    });
+
+    // Adjust opacity of cards based on scroll position
+    window.addEventListener('scroll', updateOpacity);
+});
+
+function updateOpacity() {
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card) {
+        var distanceFromTop = card.getBoundingClientRect().top;
+        var viewportHeight = window.innerHeight;
+        // Adjust the opacity change rate by introducing a scaling factor (e.g., 0.5)
+        var opacity = (1 - (distanceFromTop / (viewportHeight)))/0.6; // Adjust the scaling factor as needed
+        card.style.opacity = opacity.toFixed(2); // Set opacity with 2 decimal places
+    });
+}
+
+    </script>
+</body>
+</html>
