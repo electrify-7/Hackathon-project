@@ -45,7 +45,7 @@
         background-repeat: no-repeat;
         
     }
-    
+
  }
  header h1{
     font-size: 1rem;
@@ -83,6 +83,7 @@
  }
  
 
+
  /* Card Styling */
  .card {
     background-color: #5a4c4c;
@@ -97,9 +98,14 @@
     position: relative;
     left:20%;
     max-width: 900px;
-
+    transition: trasform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
  }
+
+ .card:hover{
+    transform: scale(1.05);
+ }
+
  
  .card h2 {
     margin-bottom: 0.5rem;
